@@ -16,9 +16,26 @@ Gestión de datos a través de una base SQLite.
 
 Se utiliza SQLite para almacenar los datos de los usuarios y los roles.
 
-Tablas creadas: Usuario,Rol
+Tablas creadas: Usuario,Rol-------------------------------
 Scripts SQL incluidos:
-crear_base_datos.sql:crea las tablas necesarias.
+-- Creación de la base de datos
+CREATE DATABASE IF NOT EXISTS sistema_usuarios;
+USE sistema_usuarios;
+
+-- Tabla de usuarios
+CREATE TABLE usuarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    nombre VARCHAR(100) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    rol ENUM('admin', 'usuario') NOT NULL
+);
+
+-- Usuarios iniciales
+INSERT INTO usuarios (email, nombre, password, rol) VALUES
+('admin@correo.com', 'Administrador', 'Admin123', 'admin'),
+('usuario@correo.com', 'Usuario Normal', 'Usuario123', 'usuario');
+-----------------------------------------------------------------------
 Consultas CRUD para usuarios.
 Archivo usuarios.dbincluido para pruebas.
 -------- Estructura del código
